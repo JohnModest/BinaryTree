@@ -1,3 +1,3 @@
 project(TestCpp)
 
-add_executable(TestCpp BinaryTree/source.cpp)
+add_executable(TestCpp source.cpp)
