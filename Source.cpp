@@ -163,7 +163,7 @@ class CTreeTempl
 public:
     struct TNode
     {        
-        TNode(T value) : nValue(value),pLeft(nullptr), pRight(nullptr) {}
+        TNode(const T &value) : nValue(value),pLeft(nullptr), pRight(nullptr) {}
         ~TNode() {}
         T nValue;
         shared_ptr <TNode> pLeft;
@@ -392,10 +392,10 @@ int main()
         };
 
         cout << "Variant Template string" << endl;
-        //CTreeTempl<const std::string> cTreeTempl; // default Compare function
-        //CTreeTempl<const std::string> cTreeTempl(CTreeTempl<const std::string>::Compare); // delault Compare function
-        CTreeTempl<const std::string> cTreeTempl(Compare); // extern Compare function
-        const weak_ptr <CTreeTempl<const std::string>::TNode> pNode = cTreeTempl.addElement("a");
+        //CTreeTempl<std::string> cTreeTempl; // default Compare function
+        //CTreeTempl<std::string> cTreeTempl(CTreeTempl<const std::string>::Compare); // delault Compare function
+        CTreeTempl<std::string> cTreeTempl(Compare); // extern Compare function
+        const weak_ptr <CTreeTempl<std::string>::TNode> pNode = cTreeTempl.addElement("a");
         cTreeTempl.addElement("b");
         cTreeTempl.addElement("18");
         cTreeTempl.addElement("11");
@@ -408,7 +408,7 @@ int main()
 
         cTreeTempl.delElement("11");
 
-        weak_ptr <CTreeTempl<const std::string>::TNode> pNodeF = cTreeTempl.findElement("c");
+        weak_ptr <CTreeTempl<std::string>::TNode> pNodeF = cTreeTempl.findElement("c");
         pNodeF = cTreeTempl.findElement("8");
 
         cTreeTempl.printTree();
@@ -430,9 +430,9 @@ int main()
         };
 
         cout << "Variant Template int" << endl;
-        //CTreeTempl<const int> cTreeTempl; // default Compare function
-        CTreeTempl<const int> cTreeTempl(Compare); // extern Compare function
-        const weak_ptr <CTreeTempl<const int>::TNode> pNode = cTreeTempl.addElement(1);
+        //CTreeTempl<int> cTreeTempl; // default Compare function
+        CTreeTempl<int> cTreeTempl(Compare); // extern Compare function
+        const weak_ptr <CTreeTempl<int>::TNode> pNode = cTreeTempl.addElement(1);
         cTreeTempl.addElement(2);
         cTreeTempl.addElement(18);
         cTreeTempl.addElement(11);
@@ -445,12 +445,12 @@ int main()
 
         cTreeTempl.delElement(11);
 
-        weak_ptr <CTreeTempl<const int>::TNode> pNodeF = cTreeTempl.findElement(3);
+        weak_ptr <CTreeTempl<int>::TNode> pNodeF = cTreeTempl.findElement(3);
         pNodeF = cTreeTempl.findElement(8);
 
         cTreeTempl.printTree();
     }
     ////////////////////////////////////////////////
 
-    return 1;
+    return 0;
 }
